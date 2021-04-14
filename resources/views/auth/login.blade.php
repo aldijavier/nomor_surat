@@ -35,7 +35,7 @@
       <div class="main">
          <div class="col-md-6 col-sm-12">
             <div class="login-form" >
-               <form method="POST" action="{{ route('login') }}">
+               <form method="POST" action="{{ route('logins') }}">
                @csrf
                   <h4>Login</h4>
                   <hr/>

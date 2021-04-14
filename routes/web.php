@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 //Auth
 Route::get('/', 'Auth\AuthController@index')->name('login');
-Route::post('/', 'Auth\AuthController@login')->name('login');
+Route::post('/', 'Auth\AuthController@login')->name('logins');
 Route::group(['middleware' => 'auth', 'ceklevel:Super Admin'], function(){
 
     // --- General ----
