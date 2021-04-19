@@ -23,7 +23,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="card card-primary">
-                <form role="form" method="post" action="/tambah/proses" enctype="multipart/form-data">
+                <form role="form" method="post" action="{{ route('proses_tambah') }}" enctype="multipart/form-data">
                     @csrf
 
                     <div class="card-body">

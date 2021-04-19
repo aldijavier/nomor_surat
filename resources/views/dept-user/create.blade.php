@@ -23,7 +23,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="card card-primary">
-                <form role="form" method="POST" action="/tambah/proses-deptuser" enctype="multipart/form-data">
+                <form role="form" method="POST" action="{{ route('proses_tambah_deptuser') }}" enctype="multipart/form-data">
                 {{ csrf_field() }}
 
                     <div class="card-body">

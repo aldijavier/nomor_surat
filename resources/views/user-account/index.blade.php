@@ -26,7 +26,7 @@
         <div class="container-fluid">
             <div class="row mb-2 ">
                 <div class="col-sm-6">
-                    <a href="/tambah-data" type="button" class="btn btn-secondary">
+                    <a href="{{ route('tambah_user') }}" type="button" class="btn btn-secondary">
                         <i class="fas fa-plus-square"></i>
                         Add User Account
                     </a>

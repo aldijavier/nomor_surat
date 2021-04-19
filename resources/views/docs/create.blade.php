@@ -23,7 +23,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="card card-primary">
-                <form role="form" method="post" action="/docs" enctype="multipart/form-data">
+                <form role="form" method="post" action="{{ route('docs') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
                             <div class="form-group">

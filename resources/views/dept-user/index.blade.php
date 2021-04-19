@@ -82,7 +82,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{url('update-proses-deptuser/'.$d->id)}}" enctype="multipart/form-data" method="POST">
+                    <form action="{{route('proses_update_deptuser').$d->id)}}" enctype="multipart/form-data" method="POST">
                     @csrf
                     @method('patch')
                      <div class="form-group">
