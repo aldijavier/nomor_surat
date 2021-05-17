@@ -19,7 +19,9 @@ use Illuminate\Support\Facades\Route;
 
 //Auth
 Route::get('/', 'Auth\AuthController@index')->name('login');
-Route::post('/', 'Auth\AuthController@login')->name('logins');
+
+Route::post('/login', 'Auth\AuthController@login')->name('logins');
+
 Route::group(['middleware' => 'auth', 'ceklevel:Super Admin'], function(){
 
     // --- General ----
@@ -29,11 +31,11 @@ Route::group(['middleware' => 'auth', 'ceklevel:Super Admin'], function(){
     Route::get('/home', 'DocsController@hitung_messages');
     Route::get('/logout', 'Auth\AuthController@logout')->name('logout');
     // Generate Nomor Surat
-    Route::resource('depts', 'DeptsController')->name('depts');
+    Route::resource('depts', 'DeptsController');
     // Manage Document Type List
-    Route::resource('docs', 'DocCodeController')->name('docs');
+    Route::resource('docs', 'DocCodeController');
     // Manage Nomor Surat Generator
-    Route::resource('surat', 'DocsController')->name('surat');
+    Route::resource('surat', 'DocsController');
     // Manage Akun User
     Route::get('/user-account', 'UserAccountController@index');
     Route::get('/tambah-data', 'UserAccountController@tambah_data')->name('tambah_user');
