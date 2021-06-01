@@ -25,7 +25,6 @@
             <div class="card card-primary">
                 <form role="form">
                     <div class="card-body">
-
                         @if(count($depts)> 1)
                         <table class="table">
                             <thead>

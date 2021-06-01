@@ -36,20 +36,25 @@ Route::group(['middleware' => 'auth', 'ceklevel:Super Admin'], function(){
     Route::resource('docs', 'DocCodeController');
     // Manage Nomor Surat Generator
     Route::resource('surat', 'DocsController');
+    // Route::get('/surat/create', 'DocsController@create')->name('create');
+
+    // Manage Nomor Surat Generator
+    Route::resource('setting-account', 'SettingAkunController');
+
     // Manage Akun User
-    Route::get('/user-account', 'UserAccountController@index');
+    Route::get('/user-account', 'UserAccountController@index')->name('userindex');
     Route::get('/tambah-data', 'UserAccountController@tambah_data')->name('tambah_user');
     Route::post('/tambah/proses', 'UserAccountController@proses_tambah')->name('proses_tambah');
     Route::patch('/update-proses/{id}', 'UserAccountController@proses_update');
     Route::patch('/update-proses-password/{id}', 'UserAccountController@proses_update_password');
     // Manage Dept User
-    Route::get('/dept-user', 'DeptUserController@index');
+    Route::get('/dept-user', 'DeptUserController@index')->name('deptuser');
     Route::get('/tambah-data-deptuser', 'DeptUserController@tambah_data_deptuser');
     Route::post('/tambah/proses-deptuser', 'DeptUserController@proses_tambah_deptuser')->name('proses_tambah_deptuser');
     Route::patch('/update-proses-deptuser/{id}', 'DeptUserController@proses_update_deptuser')->name('proses_update_deptuser');
-    Route::get('/hapus-data-deptuser/{id}','DeptUserController@hapus_deptuser');
+    Route::get('/hapus-data-deptuser/{id}','DeptUserController@hapus_deptuser')->name('deletedept/{id}');
     // Manage Setting Akun
-    Route::get('/setting-akun', 'SettingAkunController@index');
+    Route::get('/setting-akun', 'SettingAkunController@index')->name('akunset');
     Route::patch('/update-proses-akunpassword/{id}', 'SettingAkunController@proses_update_akunpassword');
     
     //  --- Sales Support --- 
@@ -73,6 +78,8 @@ Route::group(['middleware' => 'auth', 'ceklevel:Admin,User'], function(){
     Route::get('/logout', 'Auth\AuthController@logout')->name('logout');
     // Manage Nomor Surat Generator
     Route::resource('surat', 'DocsController');
+    Route::get('/surat/create', 'DocsController@create')->name('createsurat');
+    Route::post('/tambahsurat', 'DocsController@store')->name('tambahsurat');
      // Manage Setting Akun
      Route::get('/setting-akun', 'SettingAkunController@index');
     

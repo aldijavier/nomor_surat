@@ -26,8 +26,7 @@
         <div class="container-fluid">
             <div class="row mb-2 ">
                 <div class="col-sm-6">
-                    
-                    <a href="/surat/create" type="button" class="btn btn-secondary"><i class="fas fa-plus-square"></i>
+                    <a href="{{ route('createsurat') }}" type="button" class="btn btn-secondary"><i class="fas fa-plus-square"></i>
                         Generate New Document
                     </a>
                 </div>
@@ -81,7 +80,7 @@
                     </button>
                 </div>
                 <div class="modal-body table-responsive">
-                    <!-- <form action="{{route('surat.show', 'id')}}" method="get"> -->
+                   
                         <table class="table table-bordered no-margin">
                             <tbody>
                                 <tr>

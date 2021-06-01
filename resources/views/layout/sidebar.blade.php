@@ -46,7 +46,7 @@
 
                 @if (auth()->user()->level=="Super Admin")
                 <li class="nav-item">
-                    <a href="/user-account" class="nav-link">
+                    <a href="{{ route('userindex')}}" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>Manajemen Akun User</p>
                     </a>
@@ -55,19 +55,19 @@
 
                 @if (auth()->user()->level=="Super Admin")
                 <li class="nav-item">
-                    <a href="/dept-user" class="nav-link">
+                    <a href="{{ route('deptuser')}}" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>Manajemen Dept User</p>
                     </a>
                 </li>
                 @endif
 
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="/setting-akun" class="nav-link">
                         <i class="nav-icon fas fa-user-cog"></i>
                         <p>Setting Akun Password</p>
                     </a>
-                </li>
+                </li> --}}
                 
 
                 <!-- Sales Support -->
