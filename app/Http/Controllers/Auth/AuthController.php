@@ -16,13 +16,13 @@ class AuthController extends Controller
 
     public function login(Request $request){
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
-            return redirect('/surat');
+            return redirect()->action('DocsController@index');
         }
-        return redirect('/')->with('message','email atau password salah !');
+        return redirect()->action('Auth\AuthController@login')->with('message','email atau password salah !');
     }
 
     public function logout(Request $request){
         Auth::logout();
-        return redirect('/');
+        return redirect()->action('Auth\AuthController@index')->with('message','berhasil logout !');;
     }
 }

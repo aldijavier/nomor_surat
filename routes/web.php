@@ -22,11 +22,13 @@ Route::get('/', 'Auth\AuthController@index')->name('login');
 
 Route::post('/login', 'Auth\AuthController@login')->name('logins');
 
+
 Route::group(['middleware' => 'auth', 'ceklevel:Super Admin'], function(){
 
+    Route::get('/surat', 'DocsController@index')->name('dashboard');
     // --- General ----
     Route::get('/dashboard', function(){
-        return view('home');
+        return view('home')->name('home');
     });
     Route::get('/home', 'DocsController@hitung_messages');
     Route::get('/logout', 'Auth\AuthController@logout')->name('logout');
@@ -69,10 +71,10 @@ Route::group(['middleware' => 'auth', 'ceklevel:Super Admin'], function(){
 });
 
 Route::group(['middleware' => 'auth', 'ceklevel:Admin,User'], function(){
-
+    Route::get('/surat', 'DocsController@index')->name('dashboard');
     // --- General ----
     Route::get('/dashboard', function(){
-        return view('home');
+        return view('home')->name('home');
     });
     Route::get('/home', 'DocsController@hitung_messages');
     Route::get('/logout', 'Auth\AuthController@logout')->name('logout');
