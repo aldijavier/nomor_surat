@@ -23,6 +23,6 @@ class AuthController extends Controller
 
     public function logout(Request $request){
         Auth::logout();
-        return redirect()->action('Auth\AuthController@index')->with('message','berhasil logout !');;
+        return redirect()->action('Auth\AuthController@logout')->with('message','berhasil logout !');
     }
 }
