@@ -59,7 +59,7 @@
                     </div>
                     <div class="card-footer">
                         <input class="btn btn-primary float-right" type="submit" value="Submit">
-                        <a class="btn btn-success" href="/tambah-data-deptuser"><i class="fas fa-sync"></i> Clear Data</a>
+                        <a class="btn btn-success" href="{{ route('tambah_data_deptuser') }}"><i class="fas fa-sync"></i> Clear Data</a>
                     </div>
             </div>
     </section>
