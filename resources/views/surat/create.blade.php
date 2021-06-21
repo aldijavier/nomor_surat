@@ -63,7 +63,7 @@
                     </div>
                     <div class="card-footer">
                         <input class="btn btn-primary float-right" type="submit" value="Submit">
-                        <a class="btn btn-success" href="/surat/create"><i class="fas fa-sync"></i> Clear Data</a>
+                        <a class="btn btn-success" href="{{ route('createsurat') }}"><i class="fas fa-sync"></i> Clear Data</a>
                     </div>
             </div>
     </section>
