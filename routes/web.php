@@ -51,7 +51,7 @@ Route::group(['middleware' => 'auth', 'ceklevel:Super Admin'], function(){
     Route::patch('/update-proses-password/{id}', 'UserAccountController@proses_update_password');
     // Manage Dept User
     Route::get('/dept-user', 'DeptUserController@index')->name('deptuser');
-    Route::get('/tambah-data-deptuser', 'DeptUserController@tambah_data_deptuser');
+    Route::get('/tambah-data-deptuser', 'DeptUserController@tambah_data_deptuser')->name('tambah_data_deptuser');
     Route::post('/tambah/proses-deptuser', 'DeptUserController@proses_tambah_deptuser')->name('proses_tambah_deptuser');
     Route::patch('/update-proses-deptuser/{id}', 'DeptUserController@proses_update_deptuser')->name('proses_update_deptuser');
     Route::get('/hapus-data-deptuser/{id}','DeptUserController@hapus_deptuser')->name('deletedept/{id}');

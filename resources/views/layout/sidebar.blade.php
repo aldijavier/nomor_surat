@@ -22,7 +22,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Nomor Surat -->
                 <li class="nav-item has-treeview">
-                    <a href="/surat" class="nav-link">
+                    <a href="{{ action('DocsController@index')}}" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Nomor Surat

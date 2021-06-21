@@ -26,7 +26,7 @@
         <div class="container-fluid">
             <div class="row mb-2 ">
                 <div class="col-sm-6">
-                    <a href="/tambah-data-deptuser" type="button" class="btn btn-secondary">
+                    <a href="{{ route('tambah_data_deptuser') }}" type="button" class="btn btn-secondary">
                         <i class="fas fa-plus-square"></i>
                         Add Dept User
                     </a>
