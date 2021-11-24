@@ -14,8 +14,8 @@ class AuthController extends Controller
 {
     use AuditLogsTrait;
     public function index(){
-        // return redirect('https://stagingsysdev.nap.net.id/sso/signout');
-        return redirect('http://localhost:8000/sso/signout');
+        return redirect('https://stagingsysdev.nap.net.id/sso/signout');
+        // return redirect('http://localhost:8000/sso/signout');
     }
 
     public function postlogin(Request $request, $q)
@@ -56,8 +56,8 @@ class AuthController extends Controller
                 return redirect()->action('DocsController@index');
                 }
         } else
-        // return redirect('https://stagingsysdev.nap.net.id/sso/signout');
-        return redirect('http://localhost:8000/sso/signout');
+        return redirect('https://stagingsysdev.nap.net.id/sso/signout');
+        // return redirect('http://localhost:8000/sso/signout');
     }
 
     public function logout(Request $request){
@@ -71,7 +71,7 @@ class AuthController extends Controller
        //dd($access_from);
        $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
        $email_user=auth()->user()->email;
-    //    return redirect('https://stagingsysdev.nap.net.id/sso/portal/'.$email_user);
-       return redirect('http://localhost:8000/portal/'.$email_user);
+       return redirect('https://stagingsysdev.nap.net.id/sso/portal/'.$email_user);
+    //    return redirect('http://localhost:8000/portal/'.$email_user);
     }
 }
