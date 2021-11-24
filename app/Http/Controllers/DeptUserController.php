@@ -10,12 +10,24 @@ use PhpParser\Node\Expr\AssignOp\Concat;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Browser;
+use App\Traits\AuditLogsTrait;
 
 class DeptUserController extends Controller
 {
+    use AuditLogsTrait;
     //
     public function index()
     {
+            //Audit Log
+        $username= auth()->user()->email; 
+        $ipAddress=$_SERVER['REMOTE_ADDR'];
+        $location='0';
+        $access_from=Browser::browserName();
+        $activity='Akses Halaman Departement User';
+
+        //dd($access_from);
+        $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
         $dept_user = DepartmentUser::leftJoin('departments', 'departments.id', 'department_user.department_id')
         ->leftJoin('users', 'users.id', 'department_user.user_id')
         ->select(
@@ -30,6 +42,15 @@ class DeptUserController extends Controller
 
     public function tambah_data_deptuser()
     {
+            //Audit Log
+        $username= auth()->user()->email; 
+        $ipAddress=$_SERVER['REMOTE_ADDR'];
+        $location='0';
+        $access_from=Browser::browserName();
+        $activity='Akses Halaman Tambah Data Deptuser';
+
+        //dd($access_from);
+        $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
         $user = DB::table('users')->get();
         $department = DB::table('departments')->get();
         return view('dept-user.create', compact('department', 'user'));
@@ -37,6 +58,15 @@ class DeptUserController extends Controller
 
     public function proses_tambah_deptuser(Request $request)
     {
+            //Audit Log
+        $username= auth()->user()->email; 
+        $ipAddress=$_SERVER['REMOTE_ADDR'];
+        $location='0';
+        $access_from=Browser::browserName();
+        $activity='Menambah Data DeptUser';
+
+        //dd($access_from);
+        $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
         DepartmentUser::create([
                 'user_id' => $request->user_id,
                 'department_id' => $request->department_id,
@@ -47,6 +77,15 @@ class DeptUserController extends Controller
 
     public function proses_update_deptuser(Request $request, $id)
     {
+            //Audit Log
+        $username= auth()->user()->email; 
+        $ipAddress=$_SERVER['REMOTE_ADDR'];
+        $location='0';
+        $access_from=Browser::browserName();
+        $activity='Mengupdate DeptUser';
+
+        //dd($access_from);
+        $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
         // dd($request->all());
         DB::table('department_user')->where('id', $id)->update([
              'user_id' => $request->user_id,
@@ -57,6 +96,15 @@ class DeptUserController extends Controller
     
      public function hapus_deptuser($id)
      {
+            //Audit Log
+        $username= auth()->user()->email; 
+        $ipAddress=$_SERVER['REMOTE_ADDR'];
+        $location='0';
+        $access_from=Browser::browserName();
+        $activity='Menghapus Deptuser';
+
+        //dd($access_from);
+        $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
          DB::table('department_user')->where('id',$id)->delete();
          return redirect('/dept-user')->with('success', 'Dept User Berhasil di Hapus');
      }   

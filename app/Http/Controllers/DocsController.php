@@ -13,9 +13,12 @@ use PhpParser\Node\Expr\AssignOp\Concat;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Browser;
+use App\Traits\AuditLogsTrait;
 
 class DocsController extends Controller
 {
+    use AuditLogsTrait;
     /**
      * Display a listing of the resource.
      *
@@ -23,6 +26,15 @@ class DocsController extends Controller
      */
     public function index()
     {
+            //Audit Log
+        $username= auth()->user()->email; 
+        $ipAddress=$_SERVER['REMOTE_ADDR'];
+        $location='0';
+        $access_from=Browser::browserName();
+        $activity='Akses Halaman Document';
+
+        //dd($access_from);
+        $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
         $deptId = Auth::user()->department_id;
         $levelId = Auth::user()->level;
         $userId = Auth::user()->id;
@@ -53,6 +65,15 @@ class DocsController extends Controller
 
     public function hitung_messages()
     {
+            //Audit Log
+        $username= auth()->user()->email; 
+        $ipAddress=$_SERVER['REMOTE_ADDR'];
+        $location='0';
+        $access_from=Browser::browserName();
+        $activity='Menghitung Messages';
+
+        //dd($access_from);
+        $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
         $count = DB::table('docs')->count()->get();
         return view('home')->with(compact('count', $count));
     }
@@ -64,6 +85,15 @@ class DocsController extends Controller
      */
     public function create()
     {
+            //Audit Log
+        $username= auth()->user()->email; 
+        $ipAddress=$_SERVER['REMOTE_ADDR'];
+        $location='0';
+        $access_from=Browser::browserName();
+        $activity='Akses Halaman Pembuatan Nomor Surat';
+
+        //dd($access_from);
+        $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
         $doccodes = DocumentCode::all();
         $userId = Auth::user()->id;
         $depts = Department::leftJoin('department_user', 'department_user.department_id', 'departments.id')
@@ -82,6 +112,15 @@ class DocsController extends Controller
      */
     public function store(Request $request)
     {
+            //Audit Log
+        $username= auth()->user()->email; 
+        $ipAddress=$_SERVER['REMOTE_ADDR'];
+        $location='0';
+        $access_from=Browser::browserName();
+        $activity='Menambahkan nomor surat';
+
+        //dd($access_from);
+        $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
         function convertRoman($num){
             $n = intval($num);
             $res = '';
@@ -155,6 +194,15 @@ class DocsController extends Controller
      */
     public function show($id)
     {
+            //Audit Log
+        $username= auth()->user()->email; 
+        $ipAddress=$_SERVER['REMOTE_ADDR'];
+        $location='0';
+        $access_from=Browser::browserName();
+        $activity='Menampilkan Nomor Surat';
+
+        //dd($access_from);
+        $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
         $doc = Doc::findOrFail($id);
         return view('surat.show') ->with('doc', $doc);
     }

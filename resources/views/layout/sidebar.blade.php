@@ -62,6 +62,15 @@
                 </li>
                 @endif
 
+                @if (auth()->user()->level=="Super Admin")
+                <li class="nav-item">
+                    <a href="{{ route('audit.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>Audit Log</p>
+                    </a>
+                </li>
+                @endif
+
                 {{-- <li class="nav-item">
                     <a href="/setting-akun" class="nav-link">
                         <i class="nav-icon fas fa-user-cog"></i>

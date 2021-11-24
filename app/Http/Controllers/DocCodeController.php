@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\DocumentCode;
 use Illuminate\Http\Request;
+use Browser;
+use App\Traits\AuditLogsTrait;
 
 class DocCodeController extends Controller
 {
+    use AuditLogsTrait;
     
     /**
      * Display a listing of the resource.
@@ -15,6 +18,15 @@ class DocCodeController extends Controller
      */
     public function index()
     {
+            //Audit Log
+        $username= auth()->user()->email; 
+        $ipAddress=$_SERVER['REMOTE_ADDR'];
+        $location='0';
+        $access_from=Browser::browserName();
+        $activity='Akses Halaman Document Code';
+
+        //dd($access_from);
+        $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
         $doccodes = DocumentCode::all();
         return view('docs.index') ->with('doccodes', $doccodes);
     }
@@ -25,6 +37,15 @@ class DocCodeController extends Controller
      */
     public function create()
     {
+            //Audit Log
+        $username= auth()->user()->email; 
+        $ipAddress=$_SERVER['REMOTE_ADDR'];
+        $location='0';
+        $access_from=Browser::browserName();
+        $activity='Akses Halaman Pembuatan Document Code';
+
+        //dd($access_from);
+        $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
         return view('docs.create');
     }
 
@@ -36,6 +57,15 @@ class DocCodeController extends Controller
      */
     public function store(Request $request)
     {
+            //Audit Log
+        $username= auth()->user()->email; 
+        $ipAddress=$_SERVER['REMOTE_ADDR'];
+        $location='0';
+        $access_from=Browser::browserName();
+        $activity='Menambahkan Document Code';
+
+        //dd($access_from);
+        $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
         $doccode = new DocumentCode;
         $doccode->name = $request->name;
         $doccode->code = $request->code;

@@ -18,10 +18,24 @@ use Illuminate\Support\Facades\Route;
 
 
 //Auth
-Route::get('/', 'Auth\AuthController@index')->name('login');
+// Route::get('/', 'Auth\AuthController@index')->name('login');
 
-Route::post('/login', 'Auth\AuthController@login')->name('logins');
+// Route::post('/login', 'Auth\AuthController@login')->name('logins');
 
+Route::get('/redirect-nosurat/{q}', 'Auth\AuthController@postlogin');
+
+//Export
+Route::get('/tickets/rfo/{id}', 'App\Http\Controllers\ExportController@rfo')->middleware(['checkRole:Super Admin,User,Customer Care,BOD']);
+Route::get('/tickets/rfo_maintenance/{id}', 'App\Http\Controllers\ExportController@rfoMaintenance')->middleware(['checkRole:Super Admin,User,Customer Care,BOD']);
+Route::post('/tickets/export', 'ExportController@export');
+Route::post('/tickets/exportkeluar', 'ExportController@exportkeluar');
+Route::post('/tickets/exportreturn', 'ExportController@exportreturn');
+Route::post('/tickets/exportLogAssign', 'App\Http\Controllers\ExportController@exportLogAssign')->middleware(['checkRole:Super Admin,User,Customer Care,BOD']);
+Route::post('/tickets_internal/exportLogAssign', 'App\Http\Controllers\ExportController@exportLogAssign')->middleware(['checkRole:Super Admin,User,Customer Care,BOD']);
+Route::post('/tickets/export-bulk-Assign', 'App\Http\Controllers\ExportController@exportBulkAssign')->middleware(['checkRole:Super Admin,User,Customer Care,BOD']);
+//End export
+
+Route::post('searchreferral', 'ReferralController@searchDate')->name('report');
 
 Route::group(['middleware' => 'auth', 'ceklevel:Super Admin'], function(){
 
@@ -42,7 +56,7 @@ Route::group(['middleware' => 'auth', 'ceklevel:Super Admin'], function(){
 
     // Manage Nomor Surat Generator
     Route::resource('setting-account', 'SettingAkunController');
-
+    Route::resource('/audit','AuditLogController');
     // Manage Akun User
     Route::get('/user-account', 'UserAccountController@index')->name('userindex');
     Route::get('/tambah-data', 'UserAccountController@tambah_data')->name('tambah_user');

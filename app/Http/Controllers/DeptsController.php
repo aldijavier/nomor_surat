@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Department;
 use Illuminate\Support\Facades\Validator as Validator;
+use Browser;
+use App\Traits\AuditLogsTrait;
 
 class DeptsController extends Controller
 {
+    use AuditLogsTrait;
     /**
      * Display a listing of the resource.
      *
@@ -15,6 +18,15 @@ class DeptsController extends Controller
      */
     public function index()
     {
+            //Audit Log
+        $username= auth()->user()->email; 
+        $ipAddress=$_SERVER['REMOTE_ADDR'];
+        $location='0';
+        $access_from=Browser::browserName();
+        $activity='Akses Halaman Departements';
+
+        //dd($access_from);
+        $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
         $depts = Department::all();
         return view('depts.index') ->with('depts', $depts);
     }
@@ -26,6 +38,15 @@ class DeptsController extends Controller
      */
     public function create()
     {
+            //Audit Log
+        $username= auth()->user()->email; 
+        $ipAddress=$_SERVER['REMOTE_ADDR'];
+        $location='0';
+        $access_from=Browser::browserName();
+        $activity='Akses Halaman Pembuatan Document';
+
+        //dd($access_from);
+        $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
         return view('depts.create');
     }
 
@@ -37,6 +58,15 @@ class DeptsController extends Controller
      */
     public function store(Request $request)
     {
+            //Audit Log
+        $username= auth()->user()->email; 
+        $ipAddress=$_SERVER['REMOTE_ADDR'];
+        $location='0';
+        $access_from=Browser::browserName();
+        $activity='Membuat Dokumen Baru';
+
+        //dd($access_from);
+        $this->auditLogs($username,$ipAddress,$location,$access_from,$activity);
         $department = new Department;
         $department->name = $request->name;
         $department->code = $request->code;
